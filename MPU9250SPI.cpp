@@ -80,7 +80,9 @@ void MPU9250SPI::writeRegister(byte regAdd, byte value)
 	SPI.transfer(value);
 	digitalWrite(magSelectPin, HIGH);
 }
-
+/*
+ * Setup MPU9250 to make Mag data automatically read form AK8963
+ */
 void MPU9250SPI::setupMPU9250_MagRead()
 {
 	testConnectionToMPU9250();
