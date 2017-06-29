@@ -1,6 +1,6 @@
 #include "MPU9250SPI.h"
 //The setup function is called once at startup of the sketch
-MPU9250SPI m_9250SPI;
+MPU9250SPI m_9250SPI = MPU9250SPI();
 int magSelect = 10;
 
 void setup()
@@ -8,7 +8,6 @@ void setup()
 	// Add your initialization code here
 	Serial.begin(115200);
 
-	m_9250SPI = MPU9250SPI();
 	m_9250SPI.init(magSelect);
 	delay(200);
 
