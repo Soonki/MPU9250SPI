@@ -8,32 +8,45 @@ MPU9250SPI::MPU9250SPI()
 	//ACC Original Data
 	acc_X_H = 0;
 	acc_X_L = 0;
-
+	acc_X = 0;
 	acc_Y_H = 0;
 	acc_Y_L = 0;
-
+	acc_Y = 0;
 	acc_Z_H = 0;
 	acc_Z_L = 0;
-
+	acc_Z = 0;
 	//Mag Original Data
 	mag_X_H = 0;
 	mag_X_L = 0;
-
+	mag_X = 0;
 	mag_Y_H = 0;
 	mag_Y_L = 0;
-
+	mag_Y = 0;
 	mag_Z_H = 0;
 	mag_Z_L = 0;
-
+	mag_Z = 0;
 	//Gyro Original Data
 	gyro_X_H = 0;
 	gyro_X_L = 0;
-
+	gyro_X = 0;
 	gyro_Y_H = 0;
 	gyro_Y_L = 0;
-
+	gyro_Y = 0;
 	gyro_Z_H = 0;
 	gyro_Z_L = 0;
+	gyro_Z = 0;
+
+	acc_X_filtered = 0.0;
+	acc_Y_filtered = 0.0;
+	acc_Z_filtered = 0.0;
+
+	gyro_X_filtered = 0.0;
+	gyro_Y_filtered = 0.0;
+	gyro_Z_filtered = 0.0;
+
+	mag_X_filtered = 0.0;
+	mag_Y_filtered = 0.0;
+	mag_Z_filtered = 0.0;
 };
 
 void MPU9250SPI::init(byte input_magSelectPin)
