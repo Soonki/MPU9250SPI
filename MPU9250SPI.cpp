@@ -229,7 +229,19 @@ void MPU9250SPI::read_Gyro_Data()
   gyro_Z_H = SPI.transfer(0xFF);
   gyro_Z_L = SPI.transfer(0xFF);
   digitalWrite(magSelectPin, HIGH);
+
+  gyro_X = (gyro_X_H << 8) | gyro_X_L;
+  gyro_Y = (gyro_Y_H << 8) | gyro_Y_L;
+  gyro_Z = (gyro_Z_H << 8) | gyro_Z_L;
 }
+
+void MPU9250SPI::read_Gyro_Data_Filtered()
+{
+	read_Gyro_Data();
+	gyro_X_filtered = gyro_x_LPF.apply(gyro_X);
+	gyro_Y_filtered = gyro_y_LPF.apply(gyro_Y);
+	gyro_Z_filtered = gyro_z_LPF.apply(gyro_Z);
+};
 
 void MPU9250SPI::read_ACC_Data()
 {
@@ -237,12 +249,26 @@ void MPU9250SPI::read_ACC_Data()
   SPI.transfer(MPU9250_REG_ACCEL_XOUT_H|MPU9250_SPI_READ_MASK);
   acc_X_H = SPI.transfer(0xFF);
   acc_X_L = SPI.transfer(0xFF);
+
   acc_Y_H = SPI.transfer(0xFF);
   acc_Y_L = SPI.transfer(0xFF);
+
   acc_Z_H = SPI.transfer(0xFF);
   acc_Z_L = SPI.transfer(0xFF);
   digitalWrite(magSelectPin, HIGH);
+
+  acc_X = (acc_X_H << 8) | acc_X_L;
+  acc_Y = (acc_Y_H << 8) | acc_Y_L;
+  acc_Z = (acc_Z_H << 8) | acc_Z_L;
 }
+
+void MPU9250SPI::read_ACC_Data_Filtered()
+{
+	read_ACC_Data();
+	acc_X_filtered = acc_x_LPF.apply(acc_X);
+	acc_Y_filtered = acc_y_LPF.apply(acc_Y);
+	acc_Z_filtered = acc_z_LPF.apply(acc_Z);
+};
 
 void MPU9250SPI::read_Mag_Data()
 {
@@ -258,4 +284,16 @@ void MPU9250SPI::read_Mag_Data()
   mag_Z_H = SPI.transfer(0xFF);
   byte ST2 = SPI.transfer(0xFF);
   digitalWrite(magSelectPin, HIGH);
+
+  mag_X = (mag_X_H << 8) | mag_X_L;
+  mag_Y = (mag_Y_H << 8) | mag_Y_L;
+  mag_Z = (mag_Z_H << 8) | mag_Z_L;
 }
+
+void MPU9250SPI::read_Mag_Data_Filtered()
+{
+	read_Mag_Data();
+	mag_X_filtered = mag_x_LPF.apply(mag_X);
+	mag_Y_filtered = mag_y_LPF.apply(mag_Y);
+	mag_Z_filtered = mag_z_LPF.apply(mag_Z);
+};

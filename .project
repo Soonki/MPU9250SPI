@@ -42,6 +42,11 @@
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.6.19/variants/standard</locationURI>
 		</link>
 		<link>
+			<name>libraries/LowPassFilter</name>
+			<type>2</type>
+			<location>D:/looke/Arduino/libraries/LowPassFilter</location>
+		</link>
+		<link>
 			<name>libraries/SPI</name>
 			<type>2</type>
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.6.19/libraries/SPI</locationURI>

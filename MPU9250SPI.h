@@ -139,6 +139,7 @@
 #include "Arduino.h"
 //add your includes for the project MPU9250SPI here
 #include <SPI.h>
+#include "LowPassFilterFirstOrder.h"
 
 class MPU9250SPI
 {
@@ -160,45 +161,83 @@ public:
 
 	//读取陀螺仪数据
 	void read_Gyro_Data();
+	void read_Gyro_Data_Filtered();
 
 	//读取加速度计数据
 	void read_ACC_Data();
+	void read_ACC_Data_Filtered();
 
 	//读取磁力计数据
 	void read_Mag_Data();
+	void read_Mag_Data_Filtered();
 
 	//ACC Original Data
 	byte acc_X_H;
 	byte acc_X_L;
+	short int acc_X;
 
 	byte acc_Y_H;
 	byte acc_Y_L;
+	short int acc_Y;
 
 	byte acc_Z_H;
 	byte acc_Z_L;
+	short int acc_Z;
 
 	//Mag Original Data
 	byte mag_X_H;
 	byte mag_X_L;
+	short int mag_X;
 
 	byte mag_Y_H;
 	byte mag_Y_L;
+	short int mag_Y;
 
 	byte mag_Z_H;
 	byte mag_Z_L;
+	short int mag_Z;
 
 	//Gyro Original Data
 	byte gyro_X_H;
 	byte gyro_X_L;
+	short int gyro_X;
 
 	byte gyro_Y_H;
 	byte gyro_Y_L;
+	short int gyro_Y;
 
 	byte gyro_Z_H;
 	byte gyro_Z_L;
+	short int gyro_Z;
+
+	//filtered data
+	double acc_X_filtered;
+	double acc_Y_filtered;
+	double acc_Z_filtered;
+
+	double gyro_X_filtered;
+	double gyro_Y_filtered;
+	double gyro_Z_filtered;
+
+	double mag_X_filtered;
+	double mag_Y_filtered;
+	double mag_Z_filtered;
 
 private:
 	int magSelectPin;
+
+	LowPassFilterFirstOrder mag_x_LPF;
+	LowPassFilterFirstOrder mag_y_LPF;
+	LowPassFilterFirstOrder mag_z_LPF;
+
+	LowPassFilterFirstOrder acc_x_LPF;
+	LowPassFilterFirstOrder acc_y_LPF;
+	LowPassFilterFirstOrder acc_z_LPF;
+
+	LowPassFilterFirstOrder gyro_x_LPF;
+	LowPassFilterFirstOrder gyro_y_LPF;
+	LowPassFilterFirstOrder gyro_z_LPF;
+
 };
 
 //end of add your includes here
