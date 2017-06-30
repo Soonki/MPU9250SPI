@@ -171,6 +171,8 @@ public:
 	void read_Mag_Data();
 	void read_Mag_Data_Filtered();
 
+	//ÖØÖÃÂË²¨Æ÷
+	void reFreshLPF();
 	//ACC Original Data
 	byte acc_X_H;
 	byte acc_X_L;

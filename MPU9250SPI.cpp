@@ -297,3 +297,18 @@ void MPU9250SPI::read_Mag_Data_Filtered()
 	mag_Y_filtered = mag_y_LPF.apply(mag_Y);
 	mag_Z_filtered = mag_z_LPF.apply(mag_Z);
 };
+
+void MPU9250SPI::reFreshLPF()
+{
+	mag_x_LPF.resetFilter();
+	mag_y_LPF.resetFilter();
+	mag_z_LPF.resetFilter();
+
+	acc_x_LPF.resetFilter();
+	acc_y_LPF.resetFilter();
+	acc_z_LPF.resetFilter();
+
+	gyro_x_LPF.resetFilter();
+	gyro_y_LPF.resetFilter();
+	gyro_z_LPF.resetFilter();
+};
